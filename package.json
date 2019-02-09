@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "proxy": "https://clouddrive.azurewebsites.net/",
+  "proxy": "51.144.7.192",
   "author": "",
   "license": "ISC",
   "dependencies": {
