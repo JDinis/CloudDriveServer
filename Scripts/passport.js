@@ -1,5 +1,5 @@
 const db                = require('./db');
-const User              = db.UserList;
+const User              = db.User;
 const passport          = require('Passport');
 const LocalStrategy     = require('Passport-local').Strategy;
 
@@ -45,26 +45,28 @@ module.exports = function(passport) {
         // pretendemos verificar se o utilizador ja tem login feito.
         User.findOne({ 'username' :  username }, function(err, user) {
             // if there are any errors, return the error before anything else
-            if (err)
-                return done(err);
+            if (err){
+                user.errors =JSON.stringify({
+					err:'Invalid user data.',
+					msg:err
+                });
+            }
 
             // Se não for encontrado o utilizador, devolve a mensagem
-            if (!user)
-                return done({
+            if (!user){
+                user.errors = JSON.stringify({
 					err:'Invalid user data.',
 					msg:'User not found'
-			}, false, 
-			// req.flash e a forma de inicializar o flashdata utilizando o connect-flash
-				req.flash('loginMessage','Invalid user data.'));
+                });
+            }
 
             // Se o utilizador for encontrado mas a password esta incorrecta
-            if (!user.validPassword(password))
-                return done({
+            if (!user.validPassword(password)){
+                user.errors = JSON.stringify({
 					err:'Invalid user data.',
 					msg:'Incorrect password'
-			}, false, 
-				// Cria uma loginMessage e guarda nela a sessão como flashdata
-				req.flash('loginMessage','Invalid user data.'));
+                });
+            }
 
             // Tudo se encontra bem, entao, devolvemos o utilizador
             return done(null, user);
@@ -96,7 +98,7 @@ module.exports = function(passport) {
 
                 // Verifica se ja existe um utilizador com o username pretendido
                 if (user) {
-                    return done(null, false, req.flash('signupMessage','Username already taken.'));
+                    return done(null, user);
 					
 				// Se não existir, cria-o
                 } else {                   

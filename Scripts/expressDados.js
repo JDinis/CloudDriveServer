@@ -19,6 +19,13 @@ const db            = require('./db');                  // Ficheiro onde guardam
                                                         // com a base de dados mongodb
 const app           = express();
 
+const allowCrossDomain = function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+  next();
+}
+
 require('./passport')(passport);                        // Conjunto de funções que queremos adicionar ao
                                                         // passport.
 
@@ -48,6 +55,8 @@ app.use(flash());                                       // A usar o modulo flash
 
 app.use(express.static("../"));
 app.use(express.static("../static"));
+
+app.use(allowCrossDomain);
 
 app.listen(config.port);                                // Começa a escutar ligaçoes na porta
                                                         // especificada no ficheiro config

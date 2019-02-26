@@ -1,4 +1,5 @@
 const app = require('./Scripts/expressDados').app,
+session = require('express-session'),
 multiparty = require('multiparty'),
 config = require('./Scripts/config'),
 passport  = require('./Scripts/expressDados').passport,
@@ -19,18 +20,13 @@ app.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
-app.post('/login',
-    passport.authenticate('local-login',{
-        successRedirect: '/profileRedir',
-        failureRedirect: '/login'
-}));
+app.post('/login', passport.authenticate('local-login'),function(req,res){
+    res.json(JSON.stringify({User:req.user,Error:req.user.errors}));
+});
 
 
 app.post('/signup',
-    passport.authenticate('local-signup',{
-        successRedirect: '/profileRedir',
-        failureRedirect: '/login'
-}));
+    passport.authenticate('local-signup'));
 
 
 app.post('/users/adduser',isLoggedIn,function(req,res){
@@ -44,6 +40,30 @@ app.post('/users/adduser',isLoggedIn,function(req,res){
     profile.admin = req.body.admin;
     db.addUser(profile);
     res.redirect('/users');
+});
+
+app.get('/profile/:user',isLoggedIn, function(req, res) {
+    db.findUser(req.params.user,function(err,user){
+        if(err && req.user.admin){
+            res.status(500).send('Error: '+err+' </br> Click <a href="javascript:history.back();">Here</a> to go back!');
+        }else if(err!="User not found!" && err){
+            res.status(500).send('Oops page not found! </br> Click <a href="javascript:history.back();">Here</a> to go back!');
+        }else{
+            if(req.user.admin)
+                res.render('profile',{user:user,viewer:req.user});
+            else if(!req.user.admin && req.user.username===req.params.user)
+                res.render('profile',{user:req.user,viewer:req.user});
+            else
+                res.redirect('/profile/'+req.user.username);
+        }
+    });
+});
+
+app.get('/profileRedir',isLoggedIn, function(req, res) {
+    if(req.user.admin)
+        res.redirect('/backoffice');
+    else
+        res.redirect('/profile/'+req.user.username);
 });
 
 app.post("/backend/file/upload",isLoggedIn,(req,res)=>{

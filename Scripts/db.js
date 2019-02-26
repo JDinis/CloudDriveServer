@@ -36,7 +36,7 @@ var UsersSchema = new Schema({                                          // Schem
 UsersSchema.methods.generateHash  = function(password) {                // Adiciona ao objecto UserSchema a 
                                                                         // função que gera hashes.
                                                                         
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);      // Devolve uma string com a hash da 
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(), null);       // Devolve uma string com a hash da 
                                                                         // password do utilizador que ira ser 
                                                                         // guardada na bd quando se fizer o 
 };                                                                      // registo.
@@ -48,11 +48,6 @@ UsersSchema.methods.validPassword = function(password) {                // Adici
     return bcrypt.compareSync(password, this.password);                 // Devolve o resultado da comparação
                                                                         // entre hash e password 
 };                                                                      // (provavelmente true/false).
-
-var UserList = mongoose.model('users',UsersSchema,'users');             // Inicializa a variavel UserList com
-                                                                        // o model que representa os 
-                                                                        // documentos da colecção users
-                                                                        // guardados no mongodb.
 
 var getAllUsers = function getAllUsers(callback){                       // Objecto que representa a função 
     // getAllUsers para que possa ser
@@ -85,23 +80,21 @@ var getAllUsers = function getAllUsers(callback){                       // Objec
         // Resumindo: queroTrabalharAqui chama func que chama uma função definida quando chamamos func que será o
         // nosso callback.
         
-        var cursor = UserList.find({}).cursor();
+        var cursor = User.find({}).cursor();
         
         json = "{ \"users\": [";
         
         cursor.on('data', function(user){
-            json+= "{ \"id\": \""+user._id+"\","+
-                    "\"username\": \""+user.username+"\","+
-                    "\"password\": \""+user.password+"\","+
-                    "\"email\": \""+user.email+"\","+
-                    "\"firstName\": \""+user.firstName+"\","+
-                    "\"lastName\": \""+user.lastName+"\","+
-                    "\"picurl\": \""+user.picurl+"\","+
-                    "\"admin\": \""+user.admin+"\"},";
+            json+= JSON.stringify(user.toJSON());
+            if(cursor.next(function(err,usr){
+                if(usr){
+                    json+=","+JSON.stringify(usr);
+                }
+            }));
         });
     
         cursor.on('close',function(){
-            return callback(null,JSON.parse(json.substr(0,json.length-1)+"]}"));
+            return callback(null,JSON.parse(json+"]}"));
         });
         
         cursor.on('error',function(err){
@@ -110,7 +103,7 @@ var getAllUsers = function getAllUsers(callback){                       // Objec
     };
 
 var addUser = function addUser(profile){
-    UserList.findOne({"username":profile.username},function(err,user){
+    User.findOne({"username":profile.username},function(err,user){
         if(user){
             console.log('User already exists!');
             return err;
@@ -139,7 +132,7 @@ var addUser = function addUser(profile){
 }
 
 var findUser = function findUser(username,callback){
-    return UserList.findOne({"username":username},function(err,user){
+    return User.findOne({"username":username},function(err,user){
        if(err){
            console.log('Error: '+err);
            return callback(err);
@@ -152,7 +145,7 @@ var findUser = function findUser(username,callback){
 };
 
 var updateUser = function updateUser(userid,profile){
-    return UserList.findById(userid, function(err, user){
+    return User.findById(userid, function(err, user){
         if(!user)                                                       //
             console.log('Error: User not found!');                      //
         else if(err){
@@ -190,7 +183,7 @@ var updateUser = function updateUser(userid,profile){
 
 
 var deleteUser = function deleteUser(userid){
-    return UserList.findById(userid, function(err, user){
+    return User.findById(userid, function(err, user){
         if(!user)                                                           //
             return console.log('Error: User not found!');                   //
         
@@ -203,13 +196,31 @@ var deleteUser = function deleteUser(userid){
     });
 };
 
+const User = mongoose.model('user',UsersSchema);                        // Inicializa a variavel UserList com
+                                                                        // o model que representa os 
+                                                                        // documentos da colecção users
+                                                                        // guardados no mongodb.
+
+dbObj.once('connected', function (err) {
+    User.countDocuments(function(err,count){
+        if(err){
+            console.log(err);
+        }
+        
+        if(count<=0){
+            User.create(new User({firstName:"Joao",lastName:"Dinis",username:"JDinis",password:User.schema.methods.generateHash("admin"),email:"j.p.dinis89@gmail.com",admin:true}));
+            User.create(new User({firstName:"Mario",lastName:"Simoes",username:"MSimoes",password:User.schema.methods.generateHash("admin"),email:"mariosimoes@gmail.com",admin:true}));
+        }
+    })
+});
+                                                                        
         
 module.exports = {                                                      // Ao exportar os objectos estamos a
                                                                         // permitir que estes sejam usados 
                                                                         // dentro de outros ficheiros usando
                                                                         // require('./db');
                                                                         
-  'UserList':UserList,                                                  // Exporta o objecto UserList.
+  'User':User,                                                          // Exporta o objecto UserList.
   'dbObj':dbObj,                                                        // Exporta o objecto dbObj que 
                                                                         // representa a ligação ao mongodb.
                                                                         
