@@ -84,6 +84,7 @@ module.exports = function(passport) {
                 return done(null, user)
             }
 
+
             // Tudo se encontra bem, entao, devolvemos o utilizador
             return done(null, user);
         });

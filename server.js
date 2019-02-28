@@ -15,11 +15,9 @@ function isLoggedIn(req, res, next) {                                       // F
     res.redirect('/');                                                      // Senao redireciona para a pagina
 }                                                                           // principal
 
-app.get('/');
-
-app.get('/logout', function(req, res) {
+app.post('/logout', function(req, res) {
     req.logout();
-    res.json(JSON.stringify({LoggedOut:true}))
+    res.redirect('http://localhost:3000/logout');
 });
 
 app.post('/login', passport.authenticate('local-login'),function(req,res){
@@ -68,7 +66,7 @@ app.get('/profileRedir',isLoggedIn, function(req, res) {
         res.redirect('/profile/'+req.user.username);
 });
 
-app.post("/backend/file/upload",isLoggedIn,(req,res)=>{
+app.post("/backend/file/upload",(req,res)=>{
     var form = new multiparty.Form();
     form.parse(req,(err,fields,files)=>{
         files.Files.forEach(file=>{

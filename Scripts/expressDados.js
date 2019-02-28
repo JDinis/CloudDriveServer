@@ -39,12 +39,18 @@ app.use(bodyParser.urlencoded({ extended: false }));    // inicializar o bodyPar
 app.use(bodyParser.json());                             // Indicamos que queremos o body sob forma de json
 
 app.use(session({ 
+    name:'user_sid',
     secret:config.clientSecret,                         // A usar o clientSecret do auth0 como segredo
                                                         // de sessao e inicializar o passport
                                                         // para autenticaçao dos utilizadores
                                                         // (login/signup/etc...)
     resave:true,
-    saveUninitialized:true
+    saveUninitialized:true,
+    User:null,
+    cookie: {
+        secure: true,
+        maxAge: 1000 * 60 * 60 * 24
+    }
 }));
 
 app.use(passport.initialize());                         // Inicializa o passport
