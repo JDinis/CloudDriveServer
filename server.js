@@ -15,9 +15,11 @@ function isLoggedIn(req, res, next) {                                       // F
     res.redirect('/');                                                      // Senao redireciona para a pagina
 }                                                                           // principal
 
+app.get('/');
+
 app.get('/logout', function(req, res) {
     req.logout();
-    res.redirect('/');
+    res.json(JSON.stringify({LoggedOut:true}))
 });
 
 app.post('/login', passport.authenticate('local-login'),function(req,res){
@@ -75,5 +77,5 @@ app.post("/backend/file/upload",isLoggedIn,(req,res)=>{
             fs.unlink(file.path,()=>{});
         });
     });
-    res.redirect("/file");
+    res.redirect("/profile");
 });

@@ -45,8 +45,10 @@ module.exports = function(passport) {
         // pretendemos verificar se o utilizador ja tem login feito.
         User.findOne({ 'username' :  username }, function(err, user) {
             // if there are any errors, return the error before anything else
+            var errors;
+
             if (err){
-                user.errors =JSON.stringify({
+                errors =JSON.stringify({
 					err:'Invalid user data.',
 					msg:err
                 });
@@ -54,18 +56,32 @@ module.exports = function(passport) {
 
             // Se não for encontrado o utilizador, devolve a mensagem
             if (!user){
-                user.errors = JSON.stringify({
+                errors = JSON.stringify({
 					err:'Invalid user data.',
 					msg:'User not found'
                 });
             }
 
             // Se o utilizador for encontrado mas a password esta incorrecta
-            if (!user.validPassword(password)){
-                user.errors = JSON.stringify({
+            if (user!==null && !user.validPassword(password)){
+                errors = JSON.stringify({
 					err:'Invalid user data.',
 					msg:'Incorrect password'
                 });
+            }
+
+            if(user!==null){
+                if(errors!==undefined && JSON.parse(errors).err!==undefined)
+                    user.errors=errors;
+                else
+                    user.errors=JSON.stringify({
+                        err:null,
+                        msg:null
+                    });
+            }else{
+                user=new User();
+                user.errors=errors;
+                return done(null, user)
             }
 
             // Tudo se encontra bem, entao, devolvemos o utilizador
