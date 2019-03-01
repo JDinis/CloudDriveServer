@@ -9,7 +9,7 @@ const bcrypt    = require('bcrypt-nodejs');                             // Modul
                                                                         // verificar se hash e password são 
                                                                         // iguais.
 
-mongoose.connect(config.url);                                           // Liga-se a bd mongodb no url 
+mongoose.connect(config.url,{ useNewUrlParser: true });                                           // Liga-se a bd mongodb no url 
                                                                         // especificado no ficheiro config.js.
 
 var dbObj  = mongoose.connection;                                       // Objecto que representa a ligação 
@@ -224,6 +224,7 @@ module.exports = {                                                      // Ao ex
   'dbObj':dbObj,                                                        // Exporta o objecto dbObj que 
                                                                         // representa a ligação ao mongodb.
                                                                         
+  'UserSchema':UsersSchema,
   'getAllUsers': getAllUsers,                                           // Exporta a função getAllUserss
   'findUser'   : findUser,                                              // Exporta a função findUser
   'addUser'    : addUser,                                               // Exporta a função addUser

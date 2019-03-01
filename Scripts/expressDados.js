@@ -18,6 +18,8 @@ const bodyParser    = require('body-parser');           // middleware para fazer
 const db            = require('./db');                  // Ficheiro onde guardamos tudo que tem a ver
                                                         // com a base de dados mongodb
 const app           = express();
+const path          = require('path');
+const store         = new session.MemoryStore;
 
 const allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -46,7 +48,7 @@ app.use(session({
                                                         // (login/signup/etc...)
     resave:true,
     saveUninitialized:true,
-    User:null,
+    store:store,
     cookie: {
         secure: true,
         maxAge: 1000 * 60 * 60 * 24
@@ -59,9 +61,9 @@ app.use(passport.session());                            // Inicializa a sessao q
 app.use(flash());                                       // A usar o modulo flash para mostrar mensagens,
                                                         // tais como dados incorrectos ao fazer login.
 
-app.use(express.static("../"));
-app.use(express.static("../static"));
-
+app.use(express.static(path.resolve('./clouddrive/build')));
+app.use(express.static(path.resolve('./clouddrive/build/static')));
+app.use(express.static(path.resolve('./clouddrive/build/static/media')));
 app.use(allowCrossDomain);
 
 app.listen(config.port);                                // Começa a escutar ligaçoes na porta
@@ -73,6 +75,8 @@ module.exports = {                                      // Ao exportar os object
                                                         
   'app': app,                                           // Exporta o objecto app que contem as funçoes 
                                                         // do express.
+
+  'store':store,
                                                         
   'passport':passport                                   // Exporta o objecto passport que contem as funçoes
 }; 

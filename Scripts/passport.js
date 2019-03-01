@@ -1,7 +1,9 @@
 const db                = require('./db');
-const User              = db.User;
+const UserDB            = db.User;
 const passport          = require('Passport');
 const LocalStrategy     = require('Passport-local').Strategy;
+const mongoose  = require('mongoose');                                  // O modulo mongoose permite aceder a 
+                                                                        // base de dados mongodb facilmente.
 
 // Expoem esta função para a nossa app atraves do module.exports
 module.exports = function(passport) {
@@ -21,7 +23,7 @@ module.exports = function(passport) {
 
     // Utilizado para deserializar a sessão do utilizador
     passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
+        UserDB.findById(id, function(err, user) {
             done(err, user);
         });
     });
@@ -43,7 +45,7 @@ module.exports = function(passport) {
 
         // Encontra um utilizador com o mesmo username que foi preenchido no form
         // pretendemos verificar se o utilizador ja tem login feito.
-        User.findOne({ 'username' :  username }, function(err, user) {
+        UserDB.findOne({ 'username' :  username }, function(err, user) {
             // if there are any errors, return the error before anything else
             var errors;
 
@@ -84,7 +86,6 @@ module.exports = function(passport) {
                 return done(null, user)
             }
 
-
             // Tudo se encontra bem, entao, devolvemos o utilizador
             return done(null, user);
         });
@@ -108,7 +109,7 @@ module.exports = function(passport) {
         // User.findOne não corre a não ser que dados sejam enviados de volta
         process.nextTick(function() {
         // Encontra um utilizador cujo username seja o mesmo do que preenchido nos forms
-        User.findOne({ 'username' :  username }, function(err, user) {
+        UserDB.findOne({ 'username' :  username }, function(err, user) {
                 // Se ocorrerem erros, devolver os erros
                 if (err)
                     return done(err);
@@ -119,7 +120,7 @@ module.exports = function(passport) {
 					
 				// Se não existir, cria-o
                 } else {                   
-                    var newUser	= new User();
+                    var newUser	= new UserDB();
 
                     // Inicia as credenciais locais do utlizador
                     newUser.username = username;
