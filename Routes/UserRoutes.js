@@ -56,7 +56,7 @@ module.exports = {
             });
         });
 
-        app.get('/islogged', (req, res) => {
+        app.post('/islogged', (req, res) => {
             if (session.GetSession() !== undefined) {
                 if (session.GetSession()._id !== undefined) {
                     db.User.findUser(req.body.username, (err, usr) => {
