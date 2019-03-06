@@ -59,7 +59,7 @@ module.exports = {
         app.post('/islogged', (req, res) => {
             if (session.GetSession() !== undefined) {
                 if (session.GetSession()._id !== undefined) {
-                    db.User.findUser(req.body.username, (err, usr) => {
+                    db.findUser(req.body.username, (err, usr) => {
                         if (err) {
                             console.log(err);
                             res.json(JSON.stringify({ isLoggedIn: false }));
