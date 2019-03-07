@@ -56,6 +56,18 @@ module.exports = {
             });
         });
 
+        app.post('/smartlogout', function (req, res) {
+            req.session.destroy(function (err) {
+                if (err) {
+                    console.log(err)
+                    res.json({ success: false });
+                } else {
+                    req.logout();
+                    res.json({ success: true });
+                }
+            });
+        });
+
         app.post('/islogged', (req, res) => {
             if (session.GetSession() !== undefined) {
                 if (session.GetSession()._id !== undefined) {

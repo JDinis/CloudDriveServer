@@ -74,7 +74,7 @@ module.exports = function (passport) {
                 }
 
                 if (user !== null) {
-                    if (errors !== undefined && JSON.parse(errors).err !== undefined)
+                    if (errors !== undefined && errors.err !== undefined)
                         user.errors = errors;
                     else
                         user.errors = {
