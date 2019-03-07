@@ -21,15 +21,15 @@ module.exports = {
                         req.session.destroy(function (err) {
                             if (err) {
                                 console.log(err);
-                                res.json(JSON.stringify({ success: false }));
+                                res.json({ success: false });
                             } else {
                                 req.logout();
-                                res.json(JSON.stringify({ success: false }));
+                                res.json({ success: false });
                             }
                         })
                     } else {
                         req.logout();
-                        res.json(JSON.stringify({ success: false }));
+                        res.json({ success: false });
                     }
                 };
 
@@ -59,18 +59,18 @@ module.exports = {
                     fs.mkdir("uploads/" + req.user.username + "/", (err) => {
                         if (err) {
                             console.log(err)
-                            res.json(JSON.stringify({ success: false }));
+                            res.json({ success: false });
                         }
-                        res.json(JSON.stringify({ files: files, success: true }));
+                        res.json({ files: files, success: true });
                     });
                 else {
                     fs.readdir("uploads/" + req.user.username, (err, files) => {
                         if (err) {
                             console.log(err)
-                            res.json(JSON.stringify({ success: false }));
+                            res.json({ success: false });
                         }
 
-                        res.json(JSON.stringify({ files: files, success: true }));
+                        res.json({ files: files, success: true });
                     });
                 }
             });
@@ -86,18 +86,18 @@ module.exports = {
                             fs.mkdir("uploads/" + req.user.username + "/", { recursive: true }, (err) => {
                                 if (err) {
                                     console.log(err)
-                                    res.json(JSON.stringify({ success: false }));
+                                    res.json({ success: false });
                                 }
                             })
 
                         fs.copyFile(file.path, `uploads/${req.user.username}/${file.originalFilename}`, (err) => {
                             if (err) {
                                 console.log(err)
-                                res.json(JSON.stringify({ success: false }));
+                                res.json({ success: false });
                             }
 
                             if (count === (files.files.length - 1))
-                                res.json(JSON.stringify({ success: true }))
+                                res.json({ success: true });
                             fs.unlink(file.path, () => { });
                             count++;
                         });
@@ -112,9 +112,9 @@ module.exports = {
                     fs.mkdir("uploads/" + req.user.username + "/", (err) => {
                         if (err) {
                             console.log(err)
-                            res.json(JSON.stringify({ success: false }));
+                            res.json({ success: false });
                         }
-                        res.json(JSON.stringify({ success: false }))
+                        res.json({ success: false });
                     });
                 else {
                     res.download("uploads/" + req.user.username + '/' + getFilesFromPath("uploads/" + req.user.username + '/', req.params.filename));
@@ -128,15 +128,15 @@ module.exports = {
                     fs.mkdir("uploads/" + req.user.username + "/", (err) => {
                         if (err) {
                             console.log(err)
-                            res.json(JSON.stringify({ success: false }));
+                            res.json({ success: false });
                         }
                     });
                 else {
                     fs.unlink("uploads/" + req.user.username + '/' + getFilesFromPath("uploads/" + req.user.username + '/', req.params.filename), (err) => {
                         if (err)
-                            res.json(JSON.stringify({ success: false }));
+                            res.json({ success: false });
                         else
-                            res.json(JSON.stringify({ success: true }));
+                            res.json({ success: true });
                     });
                 }
             });

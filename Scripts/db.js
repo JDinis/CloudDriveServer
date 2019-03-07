@@ -106,9 +106,9 @@ var getAllUsers = function getAllUsers(callback) {
 
         cursor.on('data', function (user) {
             if (count++ !== length)
-                json += JSON.stringify(user.toJSON()) + ",";
+                json += user.toJSON() + ",";
             else
-                json += JSON.stringify(user.toJSON());
+                json += user.toJSON();
         });
 
         cursor.on('close', function () {

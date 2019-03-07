@@ -51,36 +51,36 @@ module.exports = function (passport) {
                 var errors;
 
                 if (err) {
-                    errors = JSON.stringify({
+                    errors = {
                         err: 'Invalid user data.',
                         msg: err
-                    });
+                    };
                 }
 
                 // Se não for encontrado o utilizador, devolve a mensagem
                 if (!user) {
-                    errors = JSON.stringify({
+                    errors = {
                         err: 'Invalid user data.',
                         msg: 'User not found'
-                    });
+                    };
                 }
 
                 // Se o utilizador for encontrado mas a password esta incorrecta
                 if (user !== null && !user.validPassword(password)) {
-                    errors = JSON.stringify({
+                    errors = {
                         err: 'Invalid user data.',
                         msg: 'Incorrect password'
-                    });
+                    };
                 }
 
                 if (user !== null) {
                     if (errors !== undefined && JSON.parse(errors).err !== undefined)
                         user.errors = errors;
                     else
-                        user.errors = JSON.stringify({
+                        user.errors = {
                             err: null,
                             msg: null
-                        });
+                        };
                 } else {
                     user = new UserDB();
                     user.errors = errors;

@@ -16,15 +16,15 @@ module.exports = {
                         req.session.destroy(function (err) {
                             if (err) {
                                 console.log(err);
-                                res.json(JSON.stringify({ success: false }));
+                                res.json({ success: false });
                             } else {
                                 req.logout();
-                                res.json(JSON.stringify({ success: false }));
+                                res.json({ success: false });
                             }
                         })
                     } else {
                         req.logout();
-                        res.json(JSON.stringify({ success: false }));
+                        res.json({ success: false });
                     }
                 };
 
@@ -67,7 +67,7 @@ module.exports = {
             db.findUser(req.params.username, (err, user) => {
                 if (err) {
                     console.log(err)
-                    res.json(JSON.stringify({ success: false }));
+                    res.json({ success: false });
                 }
 
                 if (req.body.username)
@@ -114,10 +114,10 @@ module.exports = {
             db.getAllUsers((err, users) => {
                 if (err) {
                     console.log(err)
-                    res.json(JSON.stringify({ success: false }));
+                    res.json({ success: false });
                 }
 
-                res.json(JSON.stringify({ users, success: true }));
+                res.json({ users, success: true });
             })
         });
 
@@ -127,7 +127,7 @@ module.exports = {
             db.findUser(req.params.username, (err, user) => {
                 if (err) {
                     console.log(err)
-                    res.json(JSON.stringify({ success: false }));
+                    res.json({ success: false });
                 }
 
                 profile.username = user.username;
@@ -138,7 +138,7 @@ module.exports = {
                 profile.picurl = user.picurl;
                 profile.admin = user.admin;
 
-                res.json(JSON.stringify({ user, success: true }));
+                res.json({ user, success: true });
             });
         });
 
@@ -148,17 +148,17 @@ module.exports = {
                     fs.mkdir("uploads/" + req.params.username + "/", (err) => {
                         if (err) {
                             console.log(err)
-                            res.json(JSON.stringify({ success: false }));
+                            res.json({ success: false });
                         }
                     });
                 else {
                     fs.readdir("uploads/" + req.params.username, (err, files) => {
                         if (err) {
                             console.log(err)
-                            res.json(JSON.stringify({ success: false }));
+                            res.json({ success: false });
                         }
 
-                        res.json(JSON.stringify({ files: files, success: true }));
+                        res.json({ files: files, success: true });
                     });
                 }
             });
@@ -170,7 +170,7 @@ module.exports = {
                     fs.mkdir("uploads/" + req.params.username + "/", (err) => {
                         if (err) {
                             console.log(err)
-                            res.json(JSON.stringify({ success: false }));
+                            res.json({ success: false });
                         }
                     });
                 else {
@@ -193,7 +193,7 @@ module.exports = {
                     fs.mkdir("uploads/" + req.params.username + "/", (err) => {
                         if (err) {
                             console.log(err)
-                            res.json(JSON.stringify({ success: false }));
+                            res.json({ success: false });
                         }
                     });
                 else {
@@ -213,18 +213,18 @@ module.exports = {
                             fs.mkdir("uploads/" + req.params.username + "/" + path.dirname(file.originalFilename), { recursive: true }, (err) => {
                                 if (err) {
                                     console.log(err)
-                                    res.json(JSON.stringify({ success: false }));
+                                    res.json({ success: false });
                                 }
                             })
 
                         fs.copyFile(file.path, `uploads/${req.params.username}/${file.originalFilename}`, (err) => {
                             if (err) {
                                 console.log(err)
-                                res.json(JSON.stringify({ success: false }));
+                                res.json({ success: false });
                             }
 
                             if (count === (files.files.length - 1))
-                                res.json(JSON.stringify({ success: true }))
+                                res.json({ success: true });
                             fs.unlink(file.path, () => { });
                             count++;
                         });

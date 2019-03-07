@@ -12,15 +12,15 @@ module.exports = {
                         req.session.destroy(function (err) {
                             if (err) {
                                 console.log(err);
-                                res.json(JSON.stringify({ success: false }));
+                                res.json({ success: false });
                             } else {
                                 req.logout();
-                                res.json(JSON.stringify({ success: false }));
+                                res.json({ success: false });
                             }
                         })
                     } else {
                         req.logout();
-                        res.json(JSON.stringify({ success: false }));
+                        res.json({ success: false });
                     }
                 };
 
@@ -48,7 +48,7 @@ module.exports = {
             req.session.destroy(function (err) {
                 if (err) {
                     console.log(err)
-                    res.json(JSON.stringify({ success: false }));
+                    res.json({ success: false });
                 } else {
                     req.logout();
                     res.redirect('/Logout');
@@ -62,22 +62,22 @@ module.exports = {
                     db.findUser(req.body.username, (err, usr) => {
                         if (err) {
                             console.log(err);
-                            res.json(JSON.stringify({ isLoggedIn: false }));
+                            res.json({ isLoggedIn: false });
                         }
                         passport.deserializeUser(session.GetSession()._id, (err, user) => {
                             if (err) {
-                                res.json(JSON.stringify({ isLoggedIn: false }));
+                                res.json({ isLoggedIn: false });
                             }
 
                             if (usr.username === user.username)
-                                res.json(JSON.stringify({ isLoggedIn: true }));
+                                res.json({ isLoggedIn: true });
                         });
                     })
                 } else {
-                    res.json(JSON.stringify({ isLoggedIn: false }));
+                    res.json({ isLoggedIn: false });
                 }
             } else {
-                res.json(JSON.stringify({ isLoggedIn: false }));
+                res.json({ isLoggedIn: false });
             }
         })
 
@@ -85,7 +85,7 @@ module.exports = {
             req.logIn(req.user, function (err) {
                 if (err) {
                     console.log(err)
-                    res.json(JSON.stringify({ success: false }));
+                    res.json({ success: false });
                 }
 
                 if (req.session.passport.user !== undefined) {
@@ -100,7 +100,7 @@ module.exports = {
                     session.UpdateSession(sess);
                     session.GetSession().save();
                 }
-                res.json(JSON.stringify({ User: req.user, Error: req.user.errors }));
+                res.json({ User: req.user, Error: req.user.errors });
             });
         });
 
@@ -110,7 +110,7 @@ module.exports = {
                 req.logIn(req.user, function (err) {
                     if (err) {
                         console.log(err)
-                        res.json(JSON.stringify({ success: false }));
+                        res.json({ success: false });
                     }
 
                     if (req.session.passport.user !== undefined) {
@@ -126,7 +126,7 @@ module.exports = {
                         session.GetSession().save();
                     }
 
-                    res.json(JSON.stringify({ User: req.user, success: true }));
+                    res.json({ User: req.user, success: true });
                 });
             });
 
@@ -134,10 +134,10 @@ module.exports = {
             db.findUser(req.user.username, (err, user) => {
                 if (err) {
                     console.log(err)
-                    res.json(JSON.stringify({ success: false }));
+                    res.json({ success: false });
                 }
 
-                res.json(JSON.stringify({ user, success: true }));
+                res.json({ user, success: true });
             });
         });
 
@@ -176,9 +176,9 @@ module.exports = {
 
             if (Object.keys(profile).length) {
                 db.updateUser(req.user.id, profile);
-                res.json(JSON.stringify({ success: true }));
+                res.json({ success: true });
             } else {
-                res.json(JSON.stringify({ success: false }));
+                res.json({ success: false });
             }
         });
 
@@ -187,10 +187,10 @@ module.exports = {
             req.session.destroy(function (err) {
                 if (err) {
                     console.log(err)
-                    res.json(JSON.stringify({ success: false }));
+                    res.json({ success: false });
                 } else {
                     req.logout();
-                    res.json(JSON.stringify({ success: true }));
+                    res.json({ success: true });
                 }
             });
         });
