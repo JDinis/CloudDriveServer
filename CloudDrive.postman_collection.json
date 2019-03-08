@@ -1282,6 +1282,85 @@
 											"body": "\"{\\\"success\\\":true}\""
 										}
 									]
+								},
+								{
+									"name": "DeleteFile",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://{{url}}:{{port}}/files/:username/:filename",
+											"protocol": "http",
+											"host": [
+												"{{url}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"files",
+												":username",
+												":filename"
+											],
+											"variable": [
+												{
+													"key": "username",
+													"value": "",
+													"description": "Username of the user whose files we want to list."
+												},
+												{
+													"key": "filename",
+													"value": "",
+													"description": "The name of the file to be deleted"
+												}
+											]
+										},
+										"description": "Deletes Users file"
+									},
+									"response": [
+										{
+											"name": "DeleteFile",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": ""
+												},
+												"url": {
+													"raw": "http://{{url}}:{{port}}/files/:username/:filename",
+													"protocol": "http",
+													"host": [
+														"{{url}}"
+													],
+													"port": "{{port}}",
+													"path": [
+														"files",
+														":username",
+														":filename"
+													],
+													"variable": [
+														{
+															"key": "username",
+															"value": "",
+															"description": "Username of the user whose files we want to list."
+														},
+														{
+															"key": "filename",
+															"value": "",
+															"description": "The name of the file to be deleted"
+														}
+													]
+												}
+											},
+											"_postman_previewlanguage": null,
+											"header": null,
+											"cookie": [],
+											"body": null
+										}
+									]
 								}
 							],
 							"description": "Storage Drive related administrative routes such as file management.",
@@ -2274,73 +2353,7 @@
 						},
 						"description": "Lists all the logged users files."
 					},
-					"response": [
-						{
-							"name": "ListFiles",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/x-www-form-urlencoded",
-										"type": "text"
-									}
-								],
-								"body": {},
-								"url": {
-									"raw": "http://{{url}}:{{port}}/files",
-									"protocol": "http",
-									"host": [
-										"{{url}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"files"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Access-Control-Allow-Headers",
-									"value": "Content-Type"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "33"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"21-mgL6HPIiIACWP34il7c2StqhGyM\""
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 03 Mar 2019 23:40:36 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "\"{\\\"files\\\":[],\\\"success\\\":true}\""
-						}
-					]
+					"response": []
 				},
 				{
 					"name": "AddFiles",
