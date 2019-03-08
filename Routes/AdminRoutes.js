@@ -223,6 +223,7 @@ module.exports = {
                     });
                 }
             });
+            res.json({ success: false })
         });
 
         // Upload para a pasta do utilizador especificado
