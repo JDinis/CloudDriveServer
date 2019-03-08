@@ -1,0 +1,2728 @@
+{
+	"info": {
+		"_postman_id": "f1d8b499-3937-c1c9-5b07-150ac04b664e",
+		"name": "CloudDrive",
+		"description": "A cloud storage api.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "Users",
+							"item": [
+								{
+									"name": "ListUsers",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://{{url}}:{{port}}/users/list",
+											"protocol": "http",
+											"host": [
+												"{{url}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"users",
+												"list"
+											]
+										},
+										"description": "Lists all existing users."
+									},
+									"response": [
+										{
+											"name": "ListUsers",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": ""
+												},
+												"url": {
+													"raw": "http://{{url}}:{{port}}/users/list",
+													"protocol": "http",
+													"host": [
+														"{{url}}"
+													],
+													"port": "{{port}}",
+													"path": [
+														"users",
+														"list"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												},
+												{
+													"key": "Access-Control-Allow-Headers",
+													"value": "Content-Type"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "904"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"388-3sjCMo0cDIVJFR3zHD+h+yHRtYY\""
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 03 Mar 2019 18:39:52 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "\"{\\\"users\\\":[{\\\"_id\\\":\\\"5c74e52b8683aa37405fd564\\\",\\\"firstName\\\":\\\"Joao\\\",\\\"lastName\\\":\\\"Dinis\\\",\\\"username\\\":\\\"JDinis\\\",\\\"password\\\":\\\"$2a$10$V3hcjBPJQovPljt9ZtyE.eo6ZVabWUCWzQs.Sd3JmvoycWi8.QIM6\\\",\\\"email\\\":\\\"j.p.dinis89@gmail.com\\\",\\\"admin\\\":true,\\\"__v\\\":0},{\\\"_id\\\":\\\"5c74e5318683aa37405fd565\\\",\\\"firstName\\\":\\\"Mario\\\",\\\"lastName\\\":\\\"Simoes\\\",\\\"username\\\":\\\"MSimoes\\\",\\\"password\\\":\\\"$2a$10$FvbTD9isYhe9.016uZ2kNOBy4EAS2fLcyjq73NvgQRWMDCxKncy3G\\\",\\\"email\\\":\\\"mariosimoes@gmail.com\\\",\\\"admin\\\":true,\\\"__v\\\":0},{\\\"_id\\\":\\\"5c7a350abd8474561c201b1c\\\",\\\"username\\\":\\\"Dinis\\\",\\\"password\\\":\\\"$2a$10$V3hcjBPJQovPljt9ZtyE.eo6ZVabWUCWzQs.Sd3JmvoycWi8.QIM6\\\",\\\"__v\\\":0},{\\\"_id\\\":\\\"5c7bf3a039447f0ca88ba6ec\\\",\\\"username\\\":\\\"User\\\",\\\"password\\\":\\\"$2a$10$VkZpOy4nYDJWrfUX2ZsoI.LQIihLj38X5BRiIhhiaq3JH0aqHDSDe\\\",\\\"__v\\\":0,\\\"email\\\":\\\"user@gmail.com\\\",\\\"firstName\\\":\\\"User\\\",\\\"lastName\\\":\\\"Name\\\"}],\\\"success\\\":true}\""
+										}
+									]
+								},
+								{
+									"name": "AddUser",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/x-www-form-urlencoded",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "username",
+													"value": "",
+													"description": "The new username for the user",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "",
+													"description": "The new password for the user",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "",
+													"description": "The new email for the user",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "firstName",
+													"value": "",
+													"description": "The new username's first name",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "lastName",
+													"value": "",
+													"description": "The new username's last name",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "picurl",
+													"value": "",
+													"description": "The new username's profile picture url",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "admin",
+													"value": "",
+													"description": "Is new user an admin",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "http://{{url}}:{{port}}/users/add",
+											"protocol": "http",
+											"host": [
+												"{{url}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"users",
+												"add"
+											]
+										},
+										"description": "Creates a new user.\n\nWarning: To be used from an admin panel due to the ability to create administrator privileged users!!"
+									},
+									"response": [
+										{
+											"name": "AddUser",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"value": "application/x-www-form-urlencoded",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "username",
+															"value": "User2",
+															"description": "The new username for the user",
+															"type": "text"
+														},
+														{
+															"key": "password",
+															"value": "UserPwd",
+															"description": "The new password for the user",
+															"type": "text"
+														},
+														{
+															"key": "email",
+															"value": "",
+															"description": "The new email for the user",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "firstName",
+															"value": "",
+															"description": "The new username's first name",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "lastName",
+															"value": "",
+															"description": "The new username's last name",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "picurl",
+															"value": "",
+															"description": "The new username's profile picture url",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "admin",
+															"value": "",
+															"description": "Is new user an admin",
+															"type": "text",
+															"disabled": true
+														}
+													]
+												},
+												"url": {
+													"raw": "http://{{url}}:{{port}}/users/add",
+													"protocol": "http",
+													"host": [
+														"{{url}}"
+													],
+													"port": "{{port}}",
+													"path": [
+														"users",
+														"add"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "html",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												},
+												{
+													"key": "Access-Control-Allow-Headers",
+													"value": "Content-Type"
+												},
+												{
+													"key": "Accept-Ranges",
+													"value": "bytes"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "public, max-age=0"
+												},
+												{
+													"key": "Last-Modified",
+													"value": "Sun, 03 Mar 2019 14:29:37 GMT"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"91a-16943f5d089\""
+												},
+												{
+													"key": "Content-Type",
+													"value": "text/html; charset=UTF-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "2330"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 03 Mar 2019 18:44:52 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><link rel=\"shortcut icon\" href=\"/favicon.ico\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrink-to-fit=no\"/><meta name=\"theme-color\" content=\"#000000\"/><link rel=\"manifest\" href=\"/manifest.json\"/><title>React App</title><script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\" integrity=\"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q\" crossorigin=\"anonymous\"></script><link href=\"/static/css/2.ab9beef3.chunk.css\" rel=\"stylesheet\"><link href=\"/static/css/main.d923ade4.chunk.css\" rel=\"stylesheet\"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id=\"root\"></div><script>!function(l){function e(e){for(var r,t,n=e[0],o=e[1],u=e[2],f=0,i=[];f<n.length;f++)t=n[f],p[t]&&i.push(p[t][0]),p[t]=0;for(r in o)Object.prototype.hasOwnProperty.call(o,r)&&(l[r]=o[r]);for(s&&s(e);i.length;)i.shift()();return c.push.apply(c,u||[]),a()}function a(){for(var e,r=0;r<c.length;r++){for(var t=c[r],n=!0,o=1;o<t.length;o++){var u=t[o];0!==p[u]&&(n=!1)}n&&(c.splice(r--,1),e=f(f.s=t[0]))}return e}var t={},p={1:0},c=[];function f(e){if(t[e])return t[e].exports;var r=t[e]={i:e,l:!1,exports:{}};return l[e].call(r.exports,r,r.exports,f),r.l=!0,r.exports}f.m=l,f.c=t,f.d=function(e,r,t){f.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},f.r=function(e){\"undefined\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\"Module\"}),Object.defineProperty(e,\"__esModule\",{value:!0})},f.t=function(r,e){if(1&e&&(r=f(r)),8&e)return r;if(4&e&&\"object\"==typeof r&&r&&r.__esModule)return r;var t=Object.create(null);if(f.r(t),Object.defineProperty(t,\"default\",{enumerable:!0,value:r}),2&e&&\"string\"!=typeof r)for(var n in r)f.d(t,n,function(e){return r[e]}.bind(null,n));return t},f.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return f.d(r,\"a\",r),r},f.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},f.p=\"/\";var r=window.webpackJsonp=window.webpackJsonp||[],n=r.push.bind(r);r.push=e,r=r.slice();for(var o=0;o<r.length;o++)e(r[o]);var s=n;a()}([])</script><script src=\"/static/js/2.eefdc9f7.chunk.js\"></script><script src=\"/static/js/main.8b8e70e4.chunk.js\"></script></body></html>"
+										}
+									]
+								},
+								{
+									"name": "GetProfile",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://{{url}}:{{port}}/users/:username",
+											"protocol": "http",
+											"host": [
+												"{{url}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"users",
+												":username"
+											],
+											"variable": [
+												{
+													"key": "username",
+													"value": "",
+													"description": "Username of the user whose profile we want to show."
+												}
+											]
+										},
+										"description": "Gets a specific User Profile."
+									},
+									"response": [
+										{
+											"name": "GetProfile",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": ""
+												},
+												"url": {
+													"raw": "http://{{url}}:{{port}}/users/:username",
+													"protocol": "http",
+													"host": [
+														"{{url}}"
+													],
+													"port": "{{port}}",
+													"path": [
+														"users",
+														":username"
+													],
+													"variable": [
+														{
+															"key": "username",
+															"value": "User",
+															"description": "Username of the user whose profile we want to show."
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												},
+												{
+													"key": "Access-Control-Allow-Headers",
+													"value": "Content-Type"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "179"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"b3-LRQZ1VzTTlattrMnLUVdbvsWCKk\""
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 03 Mar 2019 23:29:17 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "\"{\\\"user\\\":{\\\"_id\\\":\\\"5c7a350abd8474561c201b1c\\\",\\\"username\\\":\\\"User\\\",\\\"password\\\":\\\"$2a$10$cHuYNVUk0dnUG/ogdp2f5O.61oHH./WOx3JUtM07fFw24qVeHW1rq\\\",\\\"__v\\\":0},\\\"success\\\":true}\""
+										}
+									]
+								},
+								{
+									"name": "EditProfile",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/x-www-form-urlencoded"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "username",
+													"value": "",
+													"description": "The new username for the user",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "password",
+													"value": "",
+													"description": "The new password for the user",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "email",
+													"value": "",
+													"description": "The new email for the user",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "firstName",
+													"value": "",
+													"description": "The new username's first name",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "lastName",
+													"value": "",
+													"description": "The new username's last name",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "picurl",
+													"value": "",
+													"description": "The new username's profile picture url",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "admin",
+													"value": "",
+													"description": "Is new user an admin",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "http://{{url}}:{{port}}/users/edit/:username",
+											"protocol": "http",
+											"host": [
+												"{{url}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"users",
+												"edit",
+												":username"
+											],
+											"variable": [
+												{
+													"description": "Username of the user whose profile we want to edit.",
+													"key": "username",
+													"value": ""
+												}
+											]
+										},
+										"description": "Allows specified user data to be edited."
+									},
+									"response": [
+										{
+											"name": "EditProfile",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/x-www-form-urlencoded"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "username",
+															"value": "",
+															"description": "The new username for the user",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "password",
+															"value": "Test",
+															"description": "The new password for the user",
+															"type": "text"
+														},
+														{
+															"key": "email",
+															"value": "",
+															"description": "The new email for the user",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "firstName",
+															"value": "",
+															"description": "The new username's first name",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "lastName",
+															"value": "",
+															"description": "The new username's last name",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "picurl",
+															"value": "",
+															"description": "The new username's profile picture url",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "admin",
+															"value": "",
+															"description": "Is new user an admin",
+															"type": "text",
+															"disabled": true
+														}
+													]
+												},
+												"url": {
+													"raw": "http://{{url}}:{{port}}/users/edit/:username",
+													"protocol": "http",
+													"host": [
+														"{{url}}"
+													],
+													"port": "{{port}}",
+													"path": [
+														"users",
+														"edit",
+														":username"
+													],
+													"variable": [
+														{
+															"description": "Username of the user whose profile we want to edit.",
+															"key": "username",
+															"value": "User"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "html",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												},
+												{
+													"key": "Access-Control-Allow-Headers",
+													"value": "Content-Type"
+												},
+												{
+													"key": "Accept-Ranges",
+													"value": "bytes"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "public, max-age=0"
+												},
+												{
+													"key": "Last-Modified",
+													"value": "Sun, 03 Mar 2019 19:27:09 GMT"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"91a-16945063940\""
+												},
+												{
+													"key": "Content-Type",
+													"value": "text/html; charset=UTF-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "2330"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 03 Mar 2019 19:31:03 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><link rel=\"shortcut icon\" href=\"/favicon.ico\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrink-to-fit=no\"/><meta name=\"theme-color\" content=\"#000000\"/><link rel=\"manifest\" href=\"/manifest.json\"/><title>React App</title><script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\" integrity=\"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q\" crossorigin=\"anonymous\"></script><link href=\"/static/css/2.ab9beef3.chunk.css\" rel=\"stylesheet\"><link href=\"/static/css/main.d923ade4.chunk.css\" rel=\"stylesheet\"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id=\"root\"></div><script>!function(l){function e(e){for(var r,t,n=e[0],o=e[1],u=e[2],f=0,i=[];f<n.length;f++)t=n[f],p[t]&&i.push(p[t][0]),p[t]=0;for(r in o)Object.prototype.hasOwnProperty.call(o,r)&&(l[r]=o[r]);for(s&&s(e);i.length;)i.shift()();return c.push.apply(c,u||[]),a()}function a(){for(var e,r=0;r<c.length;r++){for(var t=c[r],n=!0,o=1;o<t.length;o++){var u=t[o];0!==p[u]&&(n=!1)}n&&(c.splice(r--,1),e=f(f.s=t[0]))}return e}var t={},p={1:0},c=[];function f(e){if(t[e])return t[e].exports;var r=t[e]={i:e,l:!1,exports:{}};return l[e].call(r.exports,r,r.exports,f),r.l=!0,r.exports}f.m=l,f.c=t,f.d=function(e,r,t){f.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},f.r=function(e){\"undefined\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\"Module\"}),Object.defineProperty(e,\"__esModule\",{value:!0})},f.t=function(r,e){if(1&e&&(r=f(r)),8&e)return r;if(4&e&&\"object\"==typeof r&&r&&r.__esModule)return r;var t=Object.create(null);if(f.r(t),Object.defineProperty(t,\"default\",{enumerable:!0,value:r}),2&e&&\"string\"!=typeof r)for(var n in r)f.d(t,n,function(e){return r[e]}.bind(null,n));return t},f.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return f.d(r,\"a\",r),r},f.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},f.p=\"/\";var r=window.webpackJsonp=window.webpackJsonp||[],n=r.push.bind(r);r.push=e,r=r.slice();for(var o=0;o<r.length;o++)e(r[o]);var s=n;a()}([])</script><script src=\"/static/js/2.eefdc9f7.chunk.js\"></script><script src=\"/static/js/main.8b8e70e4.chunk.js\"></script></body></html>"
+										}
+									]
+								},
+								{
+									"name": "DeleteProfile",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/x-www-form-urlencoded"
+											}
+										],
+										"body": {},
+										"url": {
+											"raw": "http://{{url}}:{{port}}/users/del/:username",
+											"protocol": "http",
+											"host": [
+												"{{url}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"users",
+												"del",
+												":username"
+											],
+											"variable": [
+												{
+													"description": "Username of the user whose profile we want to edit.",
+													"key": "username",
+													"value": ""
+												}
+											]
+										},
+										"description": "Allows specified user data to be deleted."
+									},
+									"response": [
+										{
+											"name": "DeleteProfile",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/x-www-form-urlencoded"
+													}
+												],
+												"body": {},
+												"url": {
+													"raw": "http://{{url}}:{{port}}/users/del/:username",
+													"protocol": "http",
+													"host": [
+														"{{url}}"
+													],
+													"port": "{{port}}",
+													"path": [
+														"users",
+														"del",
+														":username"
+													],
+													"variable": [
+														{
+															"description": "Username of the user whose profile we want to edit.",
+															"key": "username",
+															"value": "User"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "html",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												},
+												{
+													"key": "Access-Control-Allow-Headers",
+													"value": "Content-Type"
+												},
+												{
+													"key": "Accept-Ranges",
+													"value": "bytes"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "public, max-age=0"
+												},
+												{
+													"key": "Last-Modified",
+													"value": "Sun, 03 Mar 2019 19:27:09 GMT"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"91a-16945063940\""
+												},
+												{
+													"key": "Content-Type",
+													"value": "text/html; charset=UTF-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "2330"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 03 Mar 2019 19:35:56 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><link rel=\"shortcut icon\" href=\"/favicon.ico\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrink-to-fit=no\"/><meta name=\"theme-color\" content=\"#000000\"/><link rel=\"manifest\" href=\"/manifest.json\"/><title>React App</title><script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\" integrity=\"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q\" crossorigin=\"anonymous\"></script><link href=\"/static/css/2.ab9beef3.chunk.css\" rel=\"stylesheet\"><link href=\"/static/css/main.d923ade4.chunk.css\" rel=\"stylesheet\"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id=\"root\"></div><script>!function(l){function e(e){for(var r,t,n=e[0],o=e[1],u=e[2],f=0,i=[];f<n.length;f++)t=n[f],p[t]&&i.push(p[t][0]),p[t]=0;for(r in o)Object.prototype.hasOwnProperty.call(o,r)&&(l[r]=o[r]);for(s&&s(e);i.length;)i.shift()();return c.push.apply(c,u||[]),a()}function a(){for(var e,r=0;r<c.length;r++){for(var t=c[r],n=!0,o=1;o<t.length;o++){var u=t[o];0!==p[u]&&(n=!1)}n&&(c.splice(r--,1),e=f(f.s=t[0]))}return e}var t={},p={1:0},c=[];function f(e){if(t[e])return t[e].exports;var r=t[e]={i:e,l:!1,exports:{}};return l[e].call(r.exports,r,r.exports,f),r.l=!0,r.exports}f.m=l,f.c=t,f.d=function(e,r,t){f.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},f.r=function(e){\"undefined\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\"Module\"}),Object.defineProperty(e,\"__esModule\",{value:!0})},f.t=function(r,e){if(1&e&&(r=f(r)),8&e)return r;if(4&e&&\"object\"==typeof r&&r&&r.__esModule)return r;var t=Object.create(null);if(f.r(t),Object.defineProperty(t,\"default\",{enumerable:!0,value:r}),2&e&&\"string\"!=typeof r)for(var n in r)f.d(t,n,function(e){return r[e]}.bind(null,n));return t},f.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return f.d(r,\"a\",r),r},f.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},f.p=\"/\";var r=window.webpackJsonp=window.webpackJsonp||[],n=r.push.bind(r);r.push=e,r=r.slice();for(var o=0;o<r.length;o++)e(r[o]);var s=n;a()}([])</script><script src=\"/static/js/2.eefdc9f7.chunk.js\"></script><script src=\"/static/js/main.8b8e70e4.chunk.js\"></script></body></html>"
+										}
+									]
+								}
+							],
+							"description": "User related administrative routes such as user management.",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "de1df34d-f18f-43f6-97eb-a733c4364a6a",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "3d09a5b9-e60d-461b-8d25-c93002a1f7ec",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Drive",
+							"item": [
+								{
+									"name": "ListUserFiles",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://{{url}}:{{port}}/files/list/:username",
+											"protocol": "http",
+											"host": [
+												"{{url}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"files",
+												"list",
+												":username"
+											],
+											"variable": [
+												{
+													"description": "Username of the user whose files we want to list.",
+													"key": "username",
+													"value": ""
+												}
+											]
+										},
+										"description": "Lists a specified users files."
+									},
+									"response": [
+										{
+											"name": "ListUserFiles",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": ""
+												},
+												"url": {
+													"raw": "http://{{url}}:{{port}}/files/list/:username",
+													"protocol": "http",
+													"host": [
+														"{{url}}"
+													],
+													"port": "{{port}}",
+													"path": [
+														"files",
+														"list",
+														":username"
+													],
+													"variable": [
+														{
+															"description": "Username of the user whose files we want to list.",
+															"key": "username",
+															"value": "User"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												},
+												{
+													"key": "Access-Control-Allow-Headers",
+													"value": "Content-Type"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "45"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"2d-SI/kQSKuP6g9mBSjbzL/fip2OOA\""
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 03 Mar 2019 23:31:51 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "\"{\\\"files\\\":[\\\"test.txt\\\"],\\\"success\\\":true}\""
+										}
+									]
+								},
+								{
+									"name": "GetUserFiles",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "file",
+											"file": {}
+										},
+										"url": {
+											"raw": "http://{{url}}:{{port}}/files/:username",
+											"protocol": "http",
+											"host": [
+												"{{url}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"files",
+												":username"
+											],
+											"variable": [
+												{
+													"description": "Username of the user whose files we want to list.",
+													"key": "username",
+													"value": ""
+												}
+											]
+										},
+										"description": "Downloads a specified users zipped files."
+									},
+									"response": [
+										{
+											"name": "GetUserFiles",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "file",
+													"file": {}
+												},
+												"url": {
+													"raw": "http://{{url}}:{{port}}/files/:username",
+													"protocol": "http",
+													"host": [
+														"{{url}}"
+													],
+													"port": "{{port}}",
+													"path": [
+														"files",
+														":username"
+													],
+													"variable": [
+														{
+															"description": "Username of the user whose files we want to list.",
+															"key": "username",
+															"value": "JDinis"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "raw",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												},
+												{
+													"key": "Access-Control-Allow-Headers",
+													"value": "Content-Type"
+												},
+												{
+													"key": "Content-Disposition",
+													"value": "attachment; filename=\"JDinis.zip\""
+												},
+												{
+													"key": "Accept-Ranges",
+													"value": "bytes"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "public, max-age=0"
+												},
+												{
+													"key": "Last-Modified",
+													"value": "Sun, 03 Mar 2019 20:06:56 GMT"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"112-169452aa328\""
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/zip"
+												},
+												{
+													"key": "Content-Length",
+													"value": "274"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 03 Mar 2019 20:06:57 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "PK\u0003\u0004\u0014\u0000\b\u0000\b\u0000ܠcN\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\n\u0000\u0000\u0000JDinis.zip\u000b�ff\u0011a�\u0000�;\u000b��\u0018�\u0000\u0017��咙�Y�W�Y\u0000\u0000PK\u0007\b,�I\u0014\u001e\u0000\u0000\u0000(\u0000\u0000\u0000PK\u0003\u0004\u0014\u0000\b\u0000\b\u0000a�cN\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\b\u0000\u0000\u0000test.txt\u0003\u0000PK\u0007\b\u0000\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0001\u0002-\u0003\u0014\u0000\b\u0000\b\u0000ܠcN,�I\u0014\u001e\u0000\u0000\u0000(\u0000\u0000\u0000\n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000��\u0000\u0000\u0000\u0000JDinis.zipPK\u0001\u0002-\u0003\u0014\u0000\b\u0000\b\u0000a�cN\u0000\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\b\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000��V\u0000\u0000\u0000test.txtPK\u0005\u0006\u0000\u0000\u0000\u0000\u0002\u0000\u0002\u0000n\u0000\u0000\u0000�\u0000\u0000\u0000\u0000\u0000"
+										}
+									]
+								},
+								{
+									"name": "GetUserFile",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://{{url}}:{{port}}/files/:username/:filename",
+											"protocol": "http",
+											"host": [
+												"{{url}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"files",
+												":username",
+												":filename"
+											],
+											"variable": [
+												{
+													"key": "username",
+													"value": "",
+													"description": "Username of the user whose files we want to download"
+												},
+												{
+													"key": "filename",
+													"value": "",
+													"description": "Name of the file we want to download"
+												}
+											]
+										},
+										"description": "Download a specific users file."
+									},
+									"response": [
+										{
+											"name": "GetUserFile",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": ""
+												},
+												"url": {
+													"raw": "http://{{url}}:{{port}}/files/:username/:filename",
+													"protocol": "http",
+													"host": [
+														"{{url}}"
+													],
+													"port": "{{port}}",
+													"path": [
+														"files",
+														":username",
+														":filename"
+													],
+													"variable": [
+														{
+															"key": "username",
+															"value": "User",
+															"description": "Username of the user whose files we want to download"
+														},
+														{
+															"key": "filename",
+															"value": "test.txt",
+															"description": "Name of the file we want to download"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "plain",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												},
+												{
+													"key": "Access-Control-Allow-Headers",
+													"value": "Content-Type"
+												},
+												{
+													"key": "Content-Disposition",
+													"value": "attachment; filename=\"test.txt\""
+												},
+												{
+													"key": "Accept-Ranges",
+													"value": "bytes"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "public, max-age=0"
+												},
+												{
+													"key": "Last-Modified",
+													"value": "Sun, 03 Mar 2019 20:12:53 GMT"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"4-16945301672\""
+												},
+												{
+													"key": "Content-Type",
+													"value": "text/plain; charset=UTF-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "4"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 03 Mar 2019 23:26:14 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "test"
+										}
+									]
+								},
+								{
+									"name": "AddUserFile",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "multipart/form-data",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "files",
+													"description": "The name of the file that is going to be created",
+													"type": "file",
+													"src": ""
+												}
+											]
+										},
+										"url": {
+											"raw": "http://{{url}}:{{port}}/files/upload/:username",
+											"protocol": "http",
+											"host": [
+												"{{url}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"files",
+												"upload",
+												":username"
+											],
+											"variable": [
+												{
+													"key": "username",
+													"value": "",
+													"description": "Username of the user whose files we want to upload"
+												}
+											]
+										},
+										"description": "Uploads new files for the specific user."
+									},
+									"response": [
+										{
+											"name": "AddUserFile",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"value": "multipart/form-data",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "files",
+															"description": "The name of the file that is going to be created",
+															"type": "file"
+														}
+													]
+												},
+												"url": {
+													"raw": "http://{{url}}:{{port}}/files/upload/:username",
+													"protocol": "http",
+													"host": [
+														"{{url}}"
+													],
+													"port": "{{port}}",
+													"path": [
+														"files",
+														"upload",
+														":username"
+													],
+													"variable": [
+														{
+															"key": "username",
+															"value": "User",
+															"description": "Username of the user whose files we want to upload"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												},
+												{
+													"key": "Access-Control-Allow-Headers",
+													"value": "Content-Type"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "20"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"14-4tuJlGB2vAkss4txZh6cSFK8jp8\""
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 03 Mar 2019 19:43:08 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "\"{\\\"success\\\":true}\""
+										}
+									]
+								}
+							],
+							"description": "Storage Drive related administrative routes such as file management.",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "d9f566ac-a872-431d-8dbf-d5ec599412ff",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "b9349fb2-164b-4a78-9fc8-032b971b700a",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							],
+							"_postman_isSubFolder": true
+						}
+					],
+					"description": "Administrative Routes",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "210edf65-fd20-45fc-b27b-47c43473e22e",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "77e942e6-462e-45a3-86c4-68d93e42bae4",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "",
+									"description": "The new username for the user",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"description": "The new password for the user",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{url}}:{{port}}/signup",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"signup"
+							]
+						},
+						"description": "Allows user to create an account."
+					},
+					"response": [
+						{
+							"name": "Signup",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "NewUser",
+											"description": "The new username for the user",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "NewPass",
+											"description": "The new password for the user",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://{{url}}:{{port}}/signup",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"signup"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "181"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b5-L8t5K0XgH+fUPzs7flfI+gZuJUU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2019 18:28:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "\"{\\\"User\\\":{\\\"_id\\\":\\\"5c7c1cea3415e13ab8851386\\\",\\\"username\\\":\\\"NewUser\\\",\\\"password\\\":\\\"$2a$10$tjU3PfcGdI4PlWDIJMU2w.MTUnPMeQEJp77AmE2S2EVJOY27QhhoC\\\",\\\"__v\\\":0},\\\"success\\\":true}\""
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "",
+									"description": "Username",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"description": "User's password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{url}}:{{port}}/login",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"login"
+							]
+						},
+						"description": "Allows a user to login into his cloud storage."
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "User",
+											"description": "Username",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Pass",
+											"description": "User's password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://{{url}}:{{port}}/login",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "211"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d3-y3I7tz6A6FkAPwDk+pjrsx2RK1o\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2019 17:55:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "\"{\\\"User\\\":{\\\"_id\\\":\\\"5c7bf3a039447f0ca88ba6ec\\\",\\\"username\\\":\\\"User\\\",\\\"password\\\":\\\"$2a$10$DKov1ssXm9SsbrDxalJI3e7Tgzr1xpwrrxP1WJ/M/Z92ZOwi5jLp6\\\",\\\"__v\\\":0},\\\"Error\\\":\\\"{\\\\\\\"err\\\\\\\":null,\\\\\\\"msg\\\\\\\":null}\\\"}\""
+						}
+					]
+				},
+				{
+					"name": "IsLoggedIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "",
+									"description": "Username of user we want to know if he is logged",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{url}}:{{port}}/islogged",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"islogged"
+							]
+						},
+						"description": "Allows a user to know if he is logged in into his cloud storage."
+					},
+					"response": [
+						{
+							"name": "IsLoggedIn",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "User",
+											"description": "Username of user we want to know if he is logged",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://{{url}}:{{port}}/islogged",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"islogged"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-headers",
+									"value": "Content-Type",
+									"name": "access-control-allow-headers",
+									"description": ""
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*",
+									"name": "access-control-allow-origin",
+									"description": ""
+								},
+								{
+									"key": "connection",
+									"value": "keep-alive",
+									"name": "connection",
+									"description": ""
+								},
+								{
+									"key": "content-length",
+									"value": "23",
+									"name": "content-length",
+									"description": ""
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8",
+									"name": "content-type",
+									"description": ""
+								},
+								{
+									"key": "date",
+									"value": "Wed, 06 Mar 2019 23:12:31 GMT",
+									"name": "date",
+									"description": ""
+								},
+								{
+									"key": "etag",
+									"value": "W/\"17-c01lqEAp7LhgsgujZ3sHw9TUzN0\"",
+									"name": "etag",
+									"description": ""
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express",
+									"name": "x-powered-by",
+									"description": ""
+								}
+							],
+							"cookie": [],
+							"body": "\"{\\\"isLoggedIn\\\":true}\""
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{url}}:{{port}}/logout",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"logout"
+							]
+						},
+						"description": "Allows a user to logout into his cloud storage."
+					},
+					"response": [
+						{
+							"name": "Logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://{{url}}:{{port}}/logout",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type"
+								},
+								{
+									"key": "Accept-Ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "public, max-age=0"
+								},
+								{
+									"key": "Last-Modified",
+									"value": "Sun, 03 Mar 2019 14:29:37 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"91a-16943f5d089\""
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2330"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2019 17:56:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><link rel=\"shortcut icon\" href=\"/favicon.ico\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,shrink-to-fit=no\"/><meta name=\"theme-color\" content=\"#000000\"/><link rel=\"manifest\" href=\"/manifest.json\"/><title>React App</title><script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\" integrity=\"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q\" crossorigin=\"anonymous\"></script><link href=\"/static/css/2.ab9beef3.chunk.css\" rel=\"stylesheet\"><link href=\"/static/css/main.d923ade4.chunk.css\" rel=\"stylesheet\"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id=\"root\"></div><script>!function(l){function e(e){for(var r,t,n=e[0],o=e[1],u=e[2],f=0,i=[];f<n.length;f++)t=n[f],p[t]&&i.push(p[t][0]),p[t]=0;for(r in o)Object.prototype.hasOwnProperty.call(o,r)&&(l[r]=o[r]);for(s&&s(e);i.length;)i.shift()();return c.push.apply(c,u||[]),a()}function a(){for(var e,r=0;r<c.length;r++){for(var t=c[r],n=!0,o=1;o<t.length;o++){var u=t[o];0!==p[u]&&(n=!1)}n&&(c.splice(r--,1),e=f(f.s=t[0]))}return e}var t={},p={1:0},c=[];function f(e){if(t[e])return t[e].exports;var r=t[e]={i:e,l:!1,exports:{}};return l[e].call(r.exports,r,r.exports,f),r.l=!0,r.exports}f.m=l,f.c=t,f.d=function(e,r,t){f.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},f.r=function(e){\"undefined\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\"Module\"}),Object.defineProperty(e,\"__esModule\",{value:!0})},f.t=function(r,e){if(1&e&&(r=f(r)),8&e)return r;if(4&e&&\"object\"==typeof r&&r&&r.__esModule)return r;var t=Object.create(null);if(f.r(t),Object.defineProperty(t,\"default\",{enumerable:!0,value:r}),2&e&&\"string\"!=typeof r)for(var n in r)f.d(t,n,function(e){return r[e]}.bind(null,n));return t},f.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return f.d(r,\"a\",r),r},f.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},f.p=\"/\";var r=window.webpackJsonp=window.webpackJsonp||[],n=r.push.bind(r);r.push=e,r=r.slice();for(var o=0;o<r.length;o++)e(r[o]);var s=n;a()}([])</script><script src=\"/static/js/2.eefdc9f7.chunk.js\"></script><script src=\"/static/js/main.8b8e70e4.chunk.js\"></script></body></html>"
+						}
+					]
+				},
+				{
+					"name": "GetProfile",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "44dde15e-e285-4158-b2b2-4bf5d4fb343b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{url}}:{{port}}/profile",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"profile"
+							]
+						},
+						"description": "Gets the logged in User Profile."
+					},
+					"response": [
+						{
+							"name": "GetProfile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://{{url}}:{{port}}/profile",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "178"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b2-lDH0+OJ8aeqwkmBhPlSqzsQwGP8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2019 17:57:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "\"{\\\"user\\\":{\\\"_id\\\":\\\"5c7bf3a039447f0ca88ba6ec\\\",\\\"username\\\":\\\"User\\\",\\\"password\\\":\\\"$2a$10$DKov1ssXm9SsbrDxalJI3e7Tgzr1xpwrrxP1WJ/M/Z92ZOwi5jLp6\\\",\\\"__v\\\":0},\\\"success\\\":true}\""
+						}
+					]
+				},
+				{
+					"name": "EditProfile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "",
+									"description": "The new username for the user",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "",
+									"description": "The new password for the user",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "",
+									"description": "The new email for the user",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "firstName",
+									"value": "",
+									"description": "The new username's first name",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "lastName",
+									"value": "",
+									"description": "The new username's last name",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "picurl",
+									"value": "",
+									"description": "The new username's profile picture url",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "admin",
+									"value": "",
+									"description": "Is new user an admin",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{url}}:{{port}}/profile/edit",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"profile",
+								"edit"
+							]
+						},
+						"description": "Allows users data to be edited."
+					},
+					"response": [
+						{
+							"name": "EditProfile",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "User",
+											"description": "The new username's  username",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Pass",
+											"description": "The new password for the user",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "user@gmail.com",
+											"description": "The new email for the user",
+											"type": "text"
+										},
+										{
+											"key": "firstName",
+											"value": "User",
+											"description": "The new username's first name",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "Name",
+											"description": "The new username's last name",
+											"type": "text"
+										},
+										{
+											"key": "picurl",
+											"value": "",
+											"description": "The new username's profile picture url",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "admin",
+											"value": "true",
+											"description": "Is new user an admin",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://{{url}}:{{port}}/profile/edit",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"profile",
+										"edit"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "20"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"14-4tuJlGB2vAkss4txZh6cSFK8jp8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2019 18:26:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "\"{\\\"success\\\":true}\""
+						}
+					]
+				},
+				{
+					"name": "DeleteProfile",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{url}}:{{port}}/profile/del",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"profile",
+								"del"
+							]
+						},
+						"description": "Allows users data to be edited."
+					},
+					"response": [
+						{
+							"name": "DeleteProfile",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://{{url}}:{{port}}/profile/del",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"profile",
+										"del"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Accept-Ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "public, max-age=0"
+								},
+								{
+									"key": "Last-Modified",
+									"value": "Sun, 03 Mar 2019 14:29:37 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"91a-16943f5d089\""
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2330"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2019 18:31:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "\"{\\\"success\\\":true}\""
+						}
+					]
+				}
+			],
+			"description": "Everything related to the users content such as login,signup,logout,admin routes.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8cffb700-6223-4788-85c7-b3e57ebeaa53",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "b398b070-304b-4d05-9095-0627945412c5",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Drive",
+			"item": [
+				{
+					"name": "ListFiles",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{url}}:{{port}}/files",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"files"
+							]
+						},
+						"description": "Lists all the logged users files."
+					},
+					"response": [
+						{
+							"name": "ListFiles",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://{{url}}:{{port}}/files",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"files"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-mgL6HPIiIACWP34il7c2StqhGyM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2019 23:40:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "\"{\\\"files\\\":[],\\\"success\\\":true}\""
+						}
+					]
+				},
+				{
+					"name": "AddFiles",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "multipart/form-data"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files",
+									"description": "The name of the file that is going to be created",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{url}}:{{port}}/files/upload",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"files",
+								"upload"
+							]
+						},
+						"description": "Uploads new files for the logged user."
+					},
+					"response": [
+						{
+							"name": "AddFiles",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "multipart/form-data"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "files",
+											"description": "The name of the file that is going to be created",
+											"type": "file"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://{{url}}:{{port}}/files/upload",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"files",
+										"upload"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "20"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"14-4tuJlGB2vAkss4txZh6cSFK8jp8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2019 23:44:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "\"{\\\"success\\\":true}\""
+						}
+					]
+				},
+				{
+					"name": "GetFile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{url}}:{{port}}/search/:filename",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"search",
+								":filename"
+							],
+							"variable": [
+								{
+									"key": "filename",
+									"value": "",
+									"description": "The name of the file to be downloaded"
+								}
+							]
+						},
+						"description": "Downloads specified file."
+					},
+					"response": [
+						{
+							"name": "GetFile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://{{url}}:{{port}}/search/:filename",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"search",
+										":filename"
+									],
+									"variable": [
+										{
+											"key": "filename",
+											"value": "test",
+											"description": "The name of the file to be downloaded"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type"
+								},
+								{
+									"key": "Content-Disposition",
+									"value": "attachment; filename=\"test.txt\""
+								},
+								{
+									"key": "Accept-Ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "public, max-age=0"
+								},
+								{
+									"key": "Last-Modified",
+									"value": "Sun, 03 Mar 2019 23:46:32 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4-16945f3b258\""
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "4"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 04 Mar 2019 00:03:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "test"
+						}
+					]
+				},
+				{
+					"name": "DeleteFile",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{url}}:{{port}}/files/:filename",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"files",
+								":filename"
+							],
+							"variable": [
+								{
+									"key": "filename",
+									"value": "",
+									"description": "The name of the file to be deleted"
+								}
+							]
+						},
+						"description": "Deletes specified file."
+					},
+					"response": [
+						{
+							"name": "DeleteFile",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://{{url}}:{{port}}/files/:filename",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"files",
+										":filename"
+									],
+									"variable": [
+										{
+											"key": "filename",
+											"value": "test",
+											"description": "The name of the file to be deleted"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "20"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"14-4tuJlGB2vAkss4txZh6cSFK8jp8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 04 Mar 2019 00:08:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "\"{\\\"success\\\":true}\""
+						}
+					]
+				}
+			],
+			"description": "Storage Drive related routes such as logged in user file management.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4a0dff11-fbd1-4423-85c5-93866c26e30c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c1055f0d-0c45-42fe-8e2b-f1340e6d41d2",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ab7235f5-93c0-4d2e-a95c-81eff456b314",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "07b3c58a-19d3-47f4-a0d1-534dfcda132a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
