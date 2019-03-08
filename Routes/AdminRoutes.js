@@ -202,6 +202,29 @@ module.exports = {
             });
         });
 
+        app.delete("/files/:username/:filename", isLoggedIn, (req, res) => {
+            fs.exists("uploads/" + req.params.username, (exists) => {
+                if (!exists) {
+                    fs.mkdir("uploads/" + req.params.username + "/", (err) => {
+                        if (err) {
+                            console.log(err)
+                            res.json({ success: false });
+                        }
+                    });
+                    res.json({ success: true });
+                }
+                else {
+                    fs.unlink("uploads/" + req.params.username + "/" + req.params.filename, (err) => {
+                        if (err) {
+                            console.log(err);
+                            res.json({ success: false })
+                        }
+                        res.json({ success: true });
+                    });
+                }
+            });
+        });
+
         // Upload para a pasta do utilizador especificado
         app.post("/files/upload/:username", isLoggedIn, (req, res) => {
             var form = new multiparty.Form();
