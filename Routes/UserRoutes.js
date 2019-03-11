@@ -12,15 +12,15 @@ module.exports = {
                         req.session.destroy(function (err) {
                             if (err) {
                                 console.log(err);
-                                res.json({ success: false });
+                                return res.json({ success: false });
                             } else {
                                 req.logout();
-                                res.json({ success: false });
+                                return res.json({ success: false });
                             }
                         })
                     } else {
                         req.logout();
-                        res.json({ success: false });
+                        return res.json({ success: false });
                     }
                 };
 
@@ -48,10 +48,10 @@ module.exports = {
             req.session.destroy(function (err) {
                 if (err) {
                     console.log(err)
-                    res.json({ success: false });
+                    return res.json({ success: false });
                 } else {
                     req.logout();
-                    res.redirect('/Logout');
+                    return res.redirect('/Logout');
                 }
             });
         });
@@ -60,10 +60,10 @@ module.exports = {
             req.session.destroy(function (err) {
                 if (err) {
                     console.log(err)
-                    res.json({ success: false });
+                    return res.json({ success: false });
                 } else {
                     req.logout();
-                    res.json({ success: true });
+                    return res.json({ success: true });
                 }
             });
         });
@@ -74,22 +74,22 @@ module.exports = {
                     db.findUser(req.body.username, (err, usr) => {
                         if (err) {
                             console.log(err);
-                            res.json({ isLoggedIn: false });
+                            return res.json({ isLoggedIn: false });
                         }
                         passport.deserializeUser(session.GetSession()._id, (err, user) => {
                             if (err) {
-                                res.json({ isLoggedIn: false });
+                                return res.json({ isLoggedIn: false });
                             }
 
                             if (usr.username === user.username)
-                                res.json({ isLoggedIn: true });
+                                return res.json({ isLoggedIn: true });
                         });
                     })
                 } else {
-                    res.json({ isLoggedIn: false });
+                    return res.json({ isLoggedIn: false });
                 }
             } else {
-                res.json({ isLoggedIn: false });
+                return res.json({ isLoggedIn: false });
             }
         })
 
@@ -97,7 +97,7 @@ module.exports = {
             req.logIn(req.user, function (err) {
                 if (err) {
                     console.log(err)
-                    res.json({ success: false });
+                    return res.json({ success: false });
                 }
 
                 if (req.session.passport.user !== undefined) {
@@ -112,7 +112,7 @@ module.exports = {
                     session.UpdateSession(sess);
                     session.GetSession().save();
                 }
-                res.json({ User: req.user, Error: req.user.errors });
+                return res.json({ User: req.user, Error: req.user.errors });
             });
         });
 
@@ -122,7 +122,7 @@ module.exports = {
                 req.logIn(req.user, function (err) {
                     if (err) {
                         console.log(err)
-                        res.json({ success: false });
+                        return res.json({ success: false });
                     }
 
                     if (req.session.passport.user !== undefined) {
@@ -138,7 +138,7 @@ module.exports = {
                         session.GetSession().save();
                     }
 
-                    res.json({ User: req.user, success: true });
+                    return res.json({ User: req.user, success: true });
                 });
             });
 
@@ -146,10 +146,10 @@ module.exports = {
             db.findUser(req.user.username, (err, user) => {
                 if (err) {
                     console.log(err)
-                    res.json({ success: false });
+                    return res.json({ success: false });
                 }
 
-                res.json({ user, success: true });
+                return res.json({ user, success: true });
             });
         });
 
@@ -188,9 +188,9 @@ module.exports = {
 
             if (Object.keys(profile).length) {
                 db.updateUser(req.user.id, profile);
-                res.json({ success: true });
+                return res.json({ success: true });
             } else {
-                res.json({ success: false });
+                return res.json({ success: false });
             }
         });
 
@@ -199,10 +199,10 @@ module.exports = {
             req.session.destroy(function (err) {
                 if (err) {
                     console.log(err)
-                    res.json({ success: false });
+                    return res.json({ success: false });
                 } else {
                     req.logout();
-                    res.json({ success: true });
+                    return res.json({ success: true });
                 }
             });
         });

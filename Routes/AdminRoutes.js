@@ -16,15 +16,15 @@ module.exports = {
                         req.session.destroy(function (err) {
                             if (err) {
                                 console.log(err);
-                                res.json({ success: false });
+                                return res.json({ success: false });
                             } else {
                                 req.logout();
-                                res.json({ success: false });
+                                return res.json({ success: false });
                             }
                         })
                     } else {
                         req.logout();
-                        res.json({ success: false });
+                        return res.json({ success: false });
                     }
                 };
 
@@ -58,7 +58,7 @@ module.exports = {
             profile.picurl = req.body.picurl;
             profile.admin = req.body.admin;
             db.addUser(profile);
-            res.redirect('/users');
+            return res.redirect('/users');
         });
 
         app.put('/users/edit/:username', isLoggedIn, function (req, res) {
@@ -67,7 +67,7 @@ module.exports = {
             db.findUser(req.params.username, (err, user) => {
                 if (err) {
                     console.log(err)
-                    res.json({ success: false });
+                    return res.json({ success: false });
                 }
 
                 if (req.body.username)
@@ -101,23 +101,23 @@ module.exports = {
                     profile.picurl = user.picurl;
 
                 db.updateUsername(req.params.username, profile);
-                res.redirect('/users');
+                return res.redirect('/users');
             });
         });
 
         app.delete('/users/del/:username', isLoggedIn, function (req, res) {
             db.deleteUsername(req.params.username);
-            res.redirect('/users');
+            return res.redirect('/users');
         });
 
         app.get('/users/list', isLoggedIn, (req, res) => {
             db.getAllUsers((err, users) => {
                 if (err) {
                     console.log(err)
-                    res.json({ success: false });
+                    return res.json({ success: false });
                 }
 
-                res.json({ users, success: true });
+                return res.json({ users, success: true });
             })
         });
 
@@ -127,7 +127,7 @@ module.exports = {
             db.findUser(req.params.username, (err, user) => {
                 if (err) {
                     console.log(err)
-                    res.json({ success: false });
+                    return res.json({ success: false });
                 }
 
                 profile.username = user.username;
@@ -138,7 +138,7 @@ module.exports = {
                 profile.picurl = user.picurl;
                 profile.admin = user.admin;
 
-                res.json({ user, success: true });
+                return res.json({ user, success: true });
             });
         });
 
@@ -148,17 +148,17 @@ module.exports = {
                     fs.mkdir("uploads/" + req.params.username + "/", (err) => {
                         if (err) {
                             console.log(err)
-                            res.json({ success: false });
+                            return res.json({ success: false });
                         }
                     });
                 else {
                     fs.readdir("uploads/" + req.params.username, (err, files) => {
                         if (err) {
                             console.log(err)
-                            res.json({ success: false });
+                            return res.json({ success: false });
                         }
 
-                        res.json({ files: files, success: true });
+                        return res.json({ files: files, success: true });
                     });
                 }
             });
@@ -170,7 +170,7 @@ module.exports = {
                     fs.mkdir("uploads/" + req.params.username + "/", (err) => {
                         if (err) {
                             console.log(err)
-                            res.json({ success: false });
+                            return res.json({ success: false });
                         }
                     });
                 else {
@@ -180,7 +180,7 @@ module.exports = {
                                 fs.unlinkSync("uploads/" + req.params.username + '.zip');
                             });
                         zip.zipFolder("uploads/" + req.params.username + "/", "uploads/" + req.params.username + ".zip", () => {
-                            res.download("uploads/" + req.params.username + '.zip');
+                            return res.download("uploads/" + req.params.username + '.zip');
                         });
                     });
                 }
@@ -193,11 +193,11 @@ module.exports = {
                     fs.mkdir("uploads/" + req.params.username + "/", (err) => {
                         if (err) {
                             console.log(err)
-                            res.json({ success: false });
+                            return res.json({ success: false });
                         }
                     });
                 else {
-                    res.download("uploads/" + req.params.username + '/' + req.params.filename);
+                    return res.download("uploads/" + req.params.username + '/' + req.params.filename);
                 }
             });
         });
@@ -208,22 +208,20 @@ module.exports = {
                     fs.mkdir("uploads/" + req.params.username + "/", (err) => {
                         if (err) {
                             console.log(err)
-                            res.json({ success: false });
+                            return res.json({ success: false });
                         }
                     });
-                    res.json({ success: true });
                 }
                 else {
                     fs.unlink("uploads/" + req.params.username + "/" + req.params.filename, (err) => {
                         if (err) {
                             console.log(err);
-                            res.json({ success: false })
+                            return res.json({ success: false })
                         }
-                        res.json({ success: true });
+                        return res.json({ success: true });
                     });
                 }
             });
-            res.json({ success: false })
         });
 
         // Upload para a pasta do utilizador especificado
@@ -237,14 +235,14 @@ module.exports = {
                             fs.mkdir("uploads/" + req.params.username + "/" + path.dirname(file.originalFilename), { recursive: true }, (err) => {
                                 if (err) {
                                     console.log(err)
-                                    res.json({ success: false });
+                                    return res.json({ success: false });
                                 }
                             })
 
                         fs.copyFile(file.path, `uploads/${req.params.username}/${file.originalFilename}`, (err) => {
                             if (err) {
                                 console.log(err)
-                                res.json({ success: false });
+                                return res.json({ success: false });
                             }
 
                             if (count === (files.files.length - 1))
