@@ -4,6 +4,13 @@ const multiparty = require('multiparty'),
     passport = require('../Scripts/expressDados').passport,
     zip = require('zip-a-folder');
 
+const isAdmin = function (req, res, next) {
+    if (req.user.isAdmin)
+        next();
+    else
+        res.redirect('/Profile');
+}
+
 module.exports = {
     AdminRoutes: (app, session, db) => {
         function isLoggedIn(req, res, next) {
@@ -48,20 +55,20 @@ module.exports = {
             }
         };
 
-        app.post('/users/add', isLoggedIn, function (req, res) {
+        app.post('/users/add', isLoggedIn, isAdmin, function (req, res) {
             var profile = {};
             profile.username = req.body.username;
             profile.password = req.body.password;
             profile.email = req.body.email;
             profile.firstName = req.body.firstName;
             profile.lastName = req.body.lastName;
-            profile.picurl = req.body.picurl;
+            profile.profilePic = req.body.profilePic;
             profile.admin = req.body.admin;
             db.addUser(profile);
             return res.redirect('/users');
         });
 
-        app.put('/users/edit/:username', isLoggedIn, function (req, res) {
+        app.put('/users/edit/:username', isLoggedIn, isAdmin, function (req, res) {
             var profile = {};
 
             db.findUser(req.params.username, (err, user) => {
@@ -95,22 +102,22 @@ module.exports = {
                 else
                     profile.email = user.email;
 
-                if (req.body.picurl)
-                    profile.picurl = req.body.picurl;
+                if (req.body.profilePic)
+                    profile.profilePic = req.body.profilePic;
                 else
-                    profile.picurl = user.picurl;
+                    profile.profilePic = user.profilePic;
 
                 db.updateUsername(req.params.username, profile);
                 return res.redirect('/users');
             });
         });
 
-        app.delete('/users/del/:username', isLoggedIn, function (req, res) {
+        app.delete('/users/del/:username', isLoggedIn, isAdmin, function (req, res) {
             db.deleteUsername(req.params.username);
             return res.redirect('/users');
         });
 
-        app.get('/users/list', isLoggedIn, (req, res) => {
+        app.get('/users/list', isLoggedIn, isAdmin, (req, res) => {
             db.getAllUsers((err, users) => {
                 if (err) {
                     console.log(err)
@@ -121,7 +128,7 @@ module.exports = {
             })
         });
 
-        app.get('/users/:username', isLoggedIn, function (req, res) {
+        app.get('/users/:username', isLoggedIn, isAdmin, function (req, res) {
             var profile = {};
 
             db.findUser(req.params.username, (err, user) => {
@@ -135,14 +142,14 @@ module.exports = {
                 profile.email = user.email;
                 profile.firstName = user.firstName;
                 profile.lastName = user.lastName;
-                profile.picurl = user.picurl;
+                profile.profilePic = user.profilePic;
                 profile.admin = user.admin;
 
                 return res.json({ user, success: true });
             });
         });
 
-        app.get('/files/list/:username', isLoggedIn, (req, res) => {
+        app.get('/files/list/:username', isLoggedIn, isAdmin, (req, res) => {
             fs.exists("uploads/" + req.params.username, (exists) => {
                 if (!exists)
                     fs.mkdir("uploads/" + req.params.username + "/", (err) => {
@@ -164,7 +171,7 @@ module.exports = {
             });
         });
 
-        app.get("/files/:username", isLoggedIn, (req, res) => {
+        app.get("/files/:username", isLoggedIn, isAdmin, (req, res) => {
             fs.exists("uploads/" + req.params.username, (exists) => {
                 if (!exists)
                     fs.mkdir("uploads/" + req.params.username + "/", (err) => {
@@ -187,7 +194,7 @@ module.exports = {
             });
         });
 
-        app.get("/files/:username/:filename", isLoggedIn, (req, res) => {
+        app.get("/files/:username/:filename", isLoggedIn, isAdmin, (req, res) => {
             fs.exists("uploads/" + req.params.username, (exists) => {
                 if (!exists)
                     fs.mkdir("uploads/" + req.params.username + "/", (err) => {
@@ -202,7 +209,7 @@ module.exports = {
             });
         });
 
-        app.delete("/files/:username/:filename", isLoggedIn, (req, res) => {
+        app.delete("/files/:username/:filename", isLoggedIn, isAdmin, (req, res) => {
             fs.exists("uploads/" + req.params.username, (exists) => {
                 if (!exists) {
                     fs.mkdir("uploads/" + req.params.username + "/", (err) => {
@@ -225,7 +232,7 @@ module.exports = {
         });
 
         // Upload para a pasta do utilizador especificado
-        app.post("/files/upload/:username", isLoggedIn, (req, res) => {
+        app.post("/files/upload/:username", isLoggedIn, isAdmin, (req, res) => {
             var form = new multiparty.Form();
             form.parse(req, (err, fields, files) => {
                 var count = 0;

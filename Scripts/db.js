@@ -36,7 +36,7 @@ var UsersSchema = new Schema({
     email: String,                                                       // Email dos utilizadores.
     firstName: String,                                                   // Primeiro nome dos utilizadores.
     lastName: String,                                                    // Ultimo nome dos utilizadores.
-    picurl: String,                                                      // Imagem de prefil
+    profilePic: String,                                                      // Imagem de prefil
     admin: Boolean                                                       // Administrador
 });
 
@@ -136,7 +136,7 @@ var addUser = function addUser(profile) {
         usr.email = profile.email;
         usr.firstName = profile.firstName;
         usr.lastName = profile.lastName;
-        usr.picurl = profile.picurl;
+        usr.profilePic = profile.profilePic;
         usr.admin = profile.admin;
 
 
@@ -178,7 +178,7 @@ var updateUser = function updateUser(userid, profile) {
             user.username = profile.username;
 
         if (profile.password)
-            user.password = user.generateHash(profile.password);
+            user.password = profile.password;
 
         if (profile.firstName)
             user.firstName = profile.firstName;
@@ -189,8 +189,8 @@ var updateUser = function updateUser(userid, profile) {
         if (profile.email)
             user.email = profile.email;
 
-        if (profile.picurl)
-            user.picurl = profile.picurl;
+        if (profile.profilePic)
+            user.profilePic = profile.profilePic;
 
         return user.save(function (err) {
             if (!err)
@@ -225,8 +225,8 @@ var updateUsername = function updateUser(username, profile) {
         if (profile.email)
             user.email = profile.email;
 
-        if (profile.picurl)
-            user.picurl = profile.picurl;
+        if (profile.profilePic)
+            user.profilePic = profile.profilePic;
 
         return user.save(function (err) {
             if (!err)

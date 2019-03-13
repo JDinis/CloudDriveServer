@@ -152,7 +152,7 @@
 													"disabled": true
 												},
 												{
-													"key": "picurl",
+													"key": "profilePic",
 													"value": "",
 													"description": "The new username's profile picture url",
 													"type": "text",
@@ -231,7 +231,7 @@
 															"disabled": true
 														},
 														{
-															"key": "picurl",
+															"key": "profilePic",
 															"value": "",
 															"description": "The new username's profile picture url",
 															"type": "text",
@@ -466,7 +466,7 @@
 													"disabled": true
 												},
 												{
-													"key": "picurl",
+													"key": "profilePic",
 													"value": "",
 													"description": "The new username's profile picture url",
 													"type": "text",
@@ -554,7 +554,7 @@
 															"disabled": true
 														},
 														{
-															"key": "picurl",
+															"key": "profilePic",
 															"value": "",
 															"description": "The new username's profile picture url",
 															"type": "text",
@@ -2051,7 +2051,7 @@
 									"disabled": true
 								},
 								{
-									"key": "picurl",
+									"key": "profilePic",
 									"value": "",
 									"description": "The new username's profile picture url",
 									"type": "text",
@@ -2127,7 +2127,7 @@
 											"type": "text"
 										},
 										{
-											"key": "picurl",
+											"key": "profilePic",
 											"value": "",
 											"description": "The new username's profile picture url",
 											"type": "text",

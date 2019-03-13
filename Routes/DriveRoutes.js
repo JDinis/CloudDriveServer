@@ -96,8 +96,10 @@ module.exports = {
                                 return res.json({ success: false });
                             }
 
-                            if (count === (files.files.length - 1))
-                                res.json({ success: true });
+                            if (count === (files.files.length - 1)) {
+                                fs.unlink(file.path, () => { });
+                                return res.json({ success: true });
+                            }
                             fs.unlink(file.path, () => { });
                             count++;
                         });

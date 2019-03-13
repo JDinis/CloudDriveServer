@@ -181,10 +181,10 @@ module.exports = {
             else
                 profile.email = req.user.email;
 
-            if (req.body.picurl)
-                profile.picurl = req.body.picurl;
+            if ((req.body.profilePic !== undefined && req.body.profilePic !== null))
+                profile.profilePic = req.body.profilePic;
             else
-                profile.picurl = req.user.picurl;
+                profile.profilePic = req.user.profilePic;
 
             if (Object.keys(profile).length) {
                 db.updateUser(req.user.id, profile);
@@ -202,7 +202,7 @@ module.exports = {
                     return res.json({ success: false });
                 } else {
                     req.logout();
-                    return res.json({ success: true });
+                    return res.redirect('/Logout');
                 }
             });
         });
