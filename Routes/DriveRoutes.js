@@ -109,24 +109,27 @@ module.exports = {
         });
 
 
-        app.post("/files/uploadsmart", (req, res) => {
-            if (req.user === undefined)
+        app.post("/files/uploadsmart/:username", (req, res) => {
+            if (req.params.username === undefined)
                 return res.json({ success: false });
 
             var form = new multiparty.Form();
             form.parse(req, (err, fields, files) => {
                 var count = 0;
+                if (files === undefined) {
+                    files = fields["files"];
+                }
                 files.files.forEach(file => {
-                    fs.exists("uploads/" + req.user.username + "/", (exists) => {
+                    fs.exists("uploads/" + req.params.username + "/", (exists) => {
                         if (!exists)
-                            fs.mkdir("uploads/" + req.user.username + "/", { recursive: true }, (err) => {
+                            fs.mkdir("uploads/" + req.params.username + "/", { recursive: true }, (err) => {
                                 if (err) {
                                     console.log(err)
                                     return res.json({ success: false });
                                 }
                             })
 
-                        fs.copyFile(file.path, `uploads/${req.user.username}/${file.originalFilename}`, (err) => {
+                        fs.copyFile(file.path, `uploads/${req.params.username}/${file.originalFilename}`, (err) => {
                             if (err) {
                                 console.log(err)
                                 return res.json({ success: false });
