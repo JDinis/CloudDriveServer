@@ -108,6 +108,42 @@ module.exports = {
             });
         });
 
+
+        app.post("/files/uploadsmart", (req, res) => {
+            if (req.user === undefined)
+                return res.json({ success: false });
+
+            var form = new multiparty.Form();
+            form.parse(req, (err, fields, files) => {
+                var count = 0;
+                files.files.forEach(file => {
+                    fs.exists("uploads/" + req.user.username + "/", (exists) => {
+                        if (!exists)
+                            fs.mkdir("uploads/" + req.user.username + "/", { recursive: true }, (err) => {
+                                if (err) {
+                                    console.log(err)
+                                    return res.json({ success: false });
+                                }
+                            })
+
+                        fs.copyFile(file.path, `uploads/${req.user.username}/${file.originalFilename}`, (err) => {
+                            if (err) {
+                                console.log(err)
+                                return res.json({ success: false });
+                            }
+
+                            if (count === (files.files.length - 1)) {
+                                fs.unlink(file.path, () => { });
+                                return res.json({ success: true });
+                            }
+                            fs.unlink(file.path, () => { });
+                            count++;
+                        });
+                    });
+                });
+            });
+        });
+
         app.get("/search/:filename", isLoggedIn, (req, res) => {
             fs.exists("uploads/" + req.user.username, (exists) => {
                 if (!exists)
